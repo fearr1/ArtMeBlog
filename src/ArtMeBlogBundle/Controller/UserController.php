@@ -50,4 +50,14 @@ class UserController extends Controller
             array('form' => $form->createView())
         );
     }
+
+    /**
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+     * @Route("/profile", name="user_profile")
+     */
+    public function profileAction()
+    {
+        $user = $this->getUser();
+        return $this->render("user/profile.html.twig", ['user'=>$user]);
+    }
 }
