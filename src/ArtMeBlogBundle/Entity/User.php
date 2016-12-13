@@ -2,6 +2,7 @@
 
 namespace ArtMeBlogBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -42,6 +43,27 @@ class User implements UserInterface
      * @ORM\Column(name="password", type="string", length=255)
      */
     private $password;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="ArtMeBlogBundle\Entity\Article", mappedBy="author")
+     */
+    private $articles;
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getArticles()
+    {
+        return $this->articles;
+    }
+
+    public function addPost(Article $article){
+        $this->articles[] = $article;
+
+        return $this;
+    }
 
 
     /**
@@ -183,6 +205,11 @@ class User implements UserInterface
     function __toString()
     {
         return $this->fullName;
+    }
+
+    public function __construct()
+    {
+        $this->articles = new ArrayCollection();
     }
 }
 

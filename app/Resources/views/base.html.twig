@@ -70,6 +70,30 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-md-1">
+            <div class="container">
+            <div class="navbar-collapse collapse">
+                <ol class="nav navbar-nav navbar-left" style="margin-top: 10px">
+                    {% if app.user %}
+                        <li>
+                            <a href="{{ path('article_create') }}">
+
+                                <strong>Create Article</strong>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('article_create') }}">
+
+                                <strong>Add song</strong>
+                            </a>
+                        </li>
+                    {% endif %}
+                </ol>
+            </div>
+                </div>
+        </div>
+
     </header>
 {% endblock %}
 
