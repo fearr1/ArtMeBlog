@@ -4,10 +4,10 @@
 
 {% block main %}
     <div class="container body-content span=8 offset=2">
-        <div class="well">
+        <div style="background-color: #80efd2" class="well">
             <form class="form-horizontal" action="{{ path('user_register') }}" method="post">
                 <fieldset>
-                    <legend>Register</legend>
+                    <legend><strong>Register</strong></legend>
                     <div class="form-group">
                         <label class="col-sm-4 control-label" for="user_email">Email</label>
                         <div class="col-sm-4 ">
@@ -34,8 +34,8 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-4 col-sm-offset-4">
-                            <a class="btn btn-default" href="{{ path('blog_index') }}">Cancel</a>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <a class="btn btn-default" style="border-color: #128f76" href="{{ path('blog_index') }}">Cancel</a>
+                            <button type="submit" style="background-color: #18bc9c; border-color: #128f76" class="btn btn-primary">Register</button>
                         </div>
                     </div>
 

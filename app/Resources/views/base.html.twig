@@ -16,43 +16,53 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.png') }}"/>
 </head>
 
-<body id="{% block body_id %}{% endblock %}">
+<body style="background-color: whitesmoke" id="{% block body_id %}{% endblock %}">
 
 {% block header %}
     <header>
-        <div class="navbar navbar-default navbar-static-top" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <a href="{{ path('blog_index') }}" class="navbar-brand">art.me</a>
 
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+        <div style="background-color: whitesmoke" class="navbar-static-top" role="navigation">
+            <div class="container" style="margin-bottom:100px">
+                <div class="navbar-header">
+
+                    <a href="{{ path('blog_index') }}" class="navbar-brand"  >
+                        <img src="{{ asset('artmenew.png') }}" height="90px" width="200px">
+                    </a>
+
+                    <button type="button" style="height: 40px; margin-top:70px" class="navbar-toggle btn-block navbar-inverse" data-toggle="collapse" data-target=".navbar-collapse">
+                            <p style="color: white"><strong>MENU</strong></p>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+
                 </div>
                 <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav navbar-right" style="margin-top: 10px">
                         {% if app.user %}
                             <li>
                                 <a href="{{ path('user_profile') }}">
-                                    My Profile
+                                    <img src="{{ asset('user.svg') }}"  style="width:18px">
+                                    <strong>My Profile</strong>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ path('security_logout') }}">
-                                    Logout
+                                    <img src="{{ asset('logouticon.png') }}"  style="width:18px">
+                                    <strong>Logout</strong>
                                 </a>
                             </li>
                         {% else %}
                             <li>
                                 <a href="{{ path('user_register') }}">
-                                    REGISTER
+                                    <img src="{{ asset('createicon.png') }}"  style="width:18px">
+                                    <strong> REGISTER </strong>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ path('security_login') }}">
-                                    LOGIN
+                                    <img src="{{ asset('loginicon.png') }}"  style="width:18px">
+                                    <strong>LOGIN</strong>
                                 </a>
                             </li>
                         {% endif %}
@@ -65,6 +75,7 @@
 
 <div class="container body-container">
     {% block body %}
+
         <div class="row">
             <div id="main" class="col-sm-9">
                 {% block main %}{% endblock %}
@@ -72,14 +83,17 @@
         </div>
     {% endblock %}
 </div>
+</body>
 
-{% block footer %}
-    <footer>
-        <div class="container modal-footer">
-            <p>&copy; 2016 - All rights reserved..</p>
-        </div>
-    </footer>
-{% endblock %}
+<footer class="container  modal-footer">
+    {% block footer %}
+        <footer class="nav navbar-nav navbar-right" >
+            <div>
+                <p>&copy; 2016 - All rights reserved </p>
+            </div>
+        </footer>
+    {% endblock %}
+</footer>
 
 {% block javascripts %}
     <script src="{{ asset('js/jquery-2.2.4.min.js') }}"></script>
@@ -87,6 +101,4 @@
     <script src="{{ asset('js/bootstrap.js') }}"></script>
     <script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}"></script>
 {% endblock %}
-
-</body>
 </html>
