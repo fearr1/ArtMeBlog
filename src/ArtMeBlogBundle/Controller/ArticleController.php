@@ -29,7 +29,7 @@ class ArticleController extends Controller
             $em = $this->getDoctrine()->getEntityManager();
             $em->persist($article);
             $em->flush();
-            return $this->redirectToRoute('blog_index');
+            return $this->redirectToRoute('poem_show_all');
         }
 
         return $this->render('article/create.html.twig', array(
