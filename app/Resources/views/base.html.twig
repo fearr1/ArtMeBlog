@@ -25,7 +25,7 @@
                 <div class="navbar-header">
 
                     <a href="{{ path('blog_index') }}" class="navbar-brand"  >
-                        <img src="{{ asset('artmenew.png') }}" height="90px" width="200px">
+                        <img src="{{ asset('artmenew.png') }}" height="100px" width="250px">
                     </a>
 
                     <button type="button" style="height: 40px; margin-top:70px" class="navbar-toggle btn-block navbar-inverse" data-toggle="collapse" data-target=".navbar-collapse">
@@ -41,7 +41,7 @@
                                     <img src="{{ asset('addicon.png') }}"  style="width:18px">
                                     <strong>Add</strong>
                                     <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
+                                <ul class="nav dropdown-menu">
                                     <li>
                                         <a href="{{ path('article_create') }}" style="color: #18bc9c"><strong>Poem</strong></a>
                                     </li>
@@ -90,7 +90,7 @@
                 <div class="navbar-header">
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a href="{{ path('user_profile') }}">
+                            <a href="{{ path('poem_show_all') }}">
                                 <img src="{{ asset('poemicon.png') }}"  style="width:18px">
                                 <strong>Show all poems</strong>
                             </a>

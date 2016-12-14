@@ -14,7 +14,7 @@ class ArticleController extends Controller
     /**
      * @param Request $request
      *
-     * @Route("/article/create", name="article_create")
+     * @Route("/poem/add", name="article_create")
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
@@ -35,5 +35,14 @@ class ArticleController extends Controller
         return $this->render('article/create.html.twig', array(
             'form' => $form->createView()));
 
+    }
+
+    /**
+     * @Route("/poem/show/all", name="poem_show_all")
+     *
+     */
+    public function showAllArticles(){
+        $articles = $this->getDoctrine()->getRepository(Article::class)->findAll();
+        return $this->render('article/showAll.html.twig', ['articles' => $articles]);
     }
 }

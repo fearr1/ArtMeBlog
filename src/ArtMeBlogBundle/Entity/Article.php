@@ -24,7 +24,7 @@ class Article
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=255)
+     * @ORM\Column(name="title", type="string", length=30)
      */
     private $title;
 
@@ -101,11 +101,11 @@ class Article
     }
 
     /**
-     * @param string $summary
+     * @param string
      */
-    public function setSummary(string $summary)
+    public function setSummary()
     {
-        $this->summary = substr($this->getContent(), 0, strlen($this->getContent()) / 2) . "...";
+         $this->summary = substr($this->getContent(), 0, strlen($this->getContent()) / 2) . "...";
     }
 
     /**
