@@ -47,20 +47,20 @@ class User implements UserInterface
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="ArtMeBlogBundle\Entity\Article", mappedBy="author")
+     * @ORM\OneToMany(targetEntity="ArtMeBlogBundle\Entity\Poem", mappedBy="author")
      */
-    private $articles;
+    private $poems;
 
     /**
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getArticles()
+    public function getPoems()
     {
-        return $this->articles;
+        return $this->poems;
     }
 
-    public function addPost(Article $article){
-        $this->articles[] = $article;
+    public function addPost(Poem $poem){
+        $this->poems[] = $poem;
 
         return $this;
     }
@@ -209,7 +209,7 @@ class User implements UserInterface
 
     public function __construct()
     {
-        $this->articles = new ArrayCollection();
+        $this->poems = new ArrayCollection();
     }
 }
 

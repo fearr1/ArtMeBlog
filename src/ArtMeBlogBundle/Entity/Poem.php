@@ -5,12 +5,12 @@ namespace ArtMeBlogBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Article
+ * Poem
  *
- * @ORM\Table(name="articles")
- * @ORM\Entity(repositoryClass="ArtMeBlogBundle\Repository\ArticleRepository")
+ * @ORM\Table(name="poems")
+ * @ORM\Entity(repositoryClass="ArtMeBlogBundle\Repository\PoemRepository")
  */
-class Article
+class Poem
 {
     /**
      * @var int
@@ -57,7 +57,7 @@ class Article
     /**
      * @var User
      *
-     * @ORM\ManyToOne(targetEntity="ArtMeBlogBundle\Entity\User", inversedBy="articles")
+     * @ORM\ManyToOne(targetEntity="ArtMeBlogBundle\Entity\User", inversedBy="poems")
      * @ORM\JoinColumn(name="authorId", referencedColumnName="id")
      */
     private $author;
@@ -65,7 +65,7 @@ class Article
     /**
      * @param User $author
      *
-     * @return Article
+     * @return Poem
      */
     public function setAuthor(User $author = null)
     {
@@ -84,7 +84,7 @@ class Article
     /**
      * @param int $authorId
      *
-     * @return Article
+     * @return Poem
      */
     public function setAuthorId(int $authorId)
     {
@@ -95,7 +95,7 @@ class Article
     /**
      * @return int
      */
-    public function getAuthorId(): int
+    public function getAuthorId()
     {
         return $this->authorId;
     }
@@ -134,7 +134,7 @@ class Article
      *
      * @param string $title
      *
-     * @return Article
+     * @return Poem
      */
     public function setTitle($title)
     {
@@ -158,7 +158,7 @@ class Article
      *
      * @param string $content
      *
-     * @return Article
+     * @return Poem
      */
     public function setContent($content)
     {
@@ -182,7 +182,7 @@ class Article
      *
      * @param \DateTime $dateAdded
      *
-     * @return Article
+     * @return Poem
      */
     public function setDateAdded($dateAdded)
     {

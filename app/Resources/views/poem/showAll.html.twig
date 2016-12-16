@@ -3,19 +3,19 @@
 {% block main %}
 <div class="container body-content">
     <div class="row">
-        {% for article in articles %}
+        {% for poem in poems %}
         <div class="col-md-6">
             <article>
                 <header>
-                    <h2 style="width:300px">{{ article.title }}</h2>
+                    <h2 style="width:300px">{{ poem.title }}</h2>
                 </header>
 
                 <p>
-                    {{ article.summary }}
+                    {{ poem.summary }}
                 </p>
 
                 <small class="author">
-                    {{ article.author }}
+                    {{ poem.author }}
                 </small>
 
                 <footer>
