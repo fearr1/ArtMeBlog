@@ -3,6 +3,7 @@
 namespace ArtMeBlogBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,7 +14,8 @@ class ImageController extends Controller
 {
     /**
      * @param Request $request
-     * @Route("/image/add", name="image_add_new")
+     * @Route("/picture/add", name="image_add_new")
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @return RedirectResponse
      */
     public function newAction(Request $request)
@@ -23,33 +25,40 @@ class ImageController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // $file stores the uploaded PDF file
-            /** @var \Symfony\Component\HttpFoundation\File\UploadedFile $file */
+
+            /**
+             * @var \Symfony\Component\HttpFoundation\File\UploadedFile $file
+             */
             $file = $image->getImageName();
 
-            // Generate a unique name for the file before saving it
             $fileName = md5(uniqid()).'.'.$file->guessExtension();
 
-            // Move the file to the directory where brochures are stored
             $file->move(
                 $this->getParameter('images_directory'),
                 $fileName
             );
 
-            // Update the 'brochure' property to store the PDF file name
-            // instead of its contents
             $image->setImageName($fileName);
 
-            // ... persist the $product variable or any other work
             $em = $this->getDoctrine()->getEntityManager();
             $em->persist($image);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('poem_show_all'));
+            return $this->redirect($this->generateUrl('pictures_show_all'));
         }
 
         return $this->render('image/add.html.twig', array(
             'form' => $form->createView(),
+        ));
+    }
+
+    /**
+     * @Route("/picture/all", name="pictures_show_all")
+     */
+    public function showAll(){
+        $pictures = $this->getDoctrine()->getRepository(Image::class)->findAll();
+        return $this->render('image/showAll.html.twig', array(
+            'pictures' => $pictures
         ));
     }
 }

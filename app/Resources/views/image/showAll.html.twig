@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <div class="container body-content">
+        <div class="row">
+            {% for picture in pictures %}
+                <div class="col-md-4">
+                    <article>
+                        <header>
+
+
+                            <div class="form-group ">
+                                <div class="col-md-6 ">
+                                    <img class="img-responsive img-rounded" style="max-height: auto;" src="{{ asset('uploads/images/' ~ picture.imageName) }}"/>
+                                </div>
+                            </div>
+
+
+
+
+                        </header>
+                    </article>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
+

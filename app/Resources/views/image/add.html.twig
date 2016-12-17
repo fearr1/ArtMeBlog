@@ -1,21 +1,27 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
+    <script src="{{ asset('js/picturePreview.js') }}"></script>
 
-    
 
-    <h1>Adding a new Image</h1>
     <div class="container body-content span=8 offset=2">
         <div class="well" style="background-color: #80efd2">
             <form enctype="multipart/form-data" class="form-horizontal" action="{{ path('image_add_new') }}" method="POST">
                 <fieldset>
                     <legend><strong>Add a picture</strong></legend>
 
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label" for="image_imageName">Poem Title</label>
-                        <div class="col-sm-4 ">
-                            <input type="file" class="form-control" id="image_imageName"
-                                   name="image[imageName]">
+
+
+
+                    <div class="form-group ">
+                        <label class="col-sm-4 control-label" for="image_imageName">Your picture: </label>
+                        <div class="col-sm-4">
+
+                            <img id="picture" src="" class="col-sm-6">
+                            <input type="file"  id="image_imageName"
+                                   name="image[imageName]" onchange="readURL(this);" >
+                            <label for="image[imageName]">Choose a picture(PNG, JPG, JPEG, GIF)</label>
+
                         </div>
                     </div>
 

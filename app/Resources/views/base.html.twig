@@ -49,7 +49,7 @@
                                         <a href="#" style="color: #18bc9c"><strong>Song</strong></a>
                                     </li>
                                     <li>
-                                        <a href="#" style="color: #18bc9c"><strong>Picture</strong></a>
+                                        <a href="{{ path('image_add_new') }}" style="color: #18bc9c"><strong>Picture</strong></a>
                                     </li>
                                 </ul>
 
@@ -102,7 +102,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ path('user_profile') }}">
+                            <a href="{{ path('pictures_show_all') }}">
                                 <img src="{{ asset('pictureicon.png') }}"  style="width:18px">
                                 <strong>Show all pictures</strong>
                             </a>
