@@ -1,25 +1,21 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
+
+    
+
+    <h1>Adding a new Image</h1>
     <div class="container body-content span=8 offset=2">
         <div class="well" style="background-color: #80efd2">
-            <form class="form-horizontal" action="{{ path('poem_create') }}" method="POST">
+            <form enctype="multipart/form-data" class="form-horizontal" action="{{ path('image_add_new') }}" method="POST">
                 <fieldset>
-                    <legend><strong>Add a Poem</strong></legend>
+                    <legend><strong>Add a picture</strong></legend>
 
                     <div class="form-group">
-                        <label class="col-sm-4 control-label" for="poem_title">Poem Title</label>
+                        <label class="col-sm-4 control-label" for="image_imageName">Poem Title</label>
                         <div class="col-sm-4 ">
-                            <input type="text" class="form-control" id="poem_title" placeholder="Poem title"
-                                   name="poem[title]">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label" for="poem_content">Content</label>
-                        <div class="col-sm-6">
-                        <textarea class="form-control" rows="6" id="poem_content"
-                                  name="poem[content]" placeholder="Write your poem here.."></textarea>
+                            <input type="file" class="form-control" id="image_imageName"
+                                   name="image[imageName]">
                         </div>
                     </div>
 

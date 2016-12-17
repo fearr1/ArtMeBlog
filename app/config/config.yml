@@ -17,6 +17,7 @@ parameters:
     # This parameter defines the codes of the locales (languages) enabled in the application
     locale: en
     app.notifications.email_sender: anonymous@example.com
+    images_directory: '%kernel.root_dir%/../web/uploads/images'
 
 # Basic configuration for the Symfony framework features
 framework:
@@ -74,6 +75,9 @@ doctrine:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: true
 
+vich_uploader:
+    db_driver: orm
+
 # Swiftmailer Configuration (used to send emails)
 # instead of configuring the mailer credentials in this file, we pull
 # them from the app/config/parameters.yml file. The reason is that config.yml
@@ -86,3 +90,4 @@ doctrine:
 #     username:  "%mailer_user%"
 #     password:  "%mailer_password%"
 #     spool:     { type: memory }
+
