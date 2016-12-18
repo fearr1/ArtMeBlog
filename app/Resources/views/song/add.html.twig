@@ -1,34 +1,32 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
-    <script src="{{ asset('js/picturePreview.js') }}"></script>
 
 
     <div class="container body-content span=8 offset=2">
         <div class="well" style="background-color: #80efd2">
-            <form enctype="multipart/form-data" class="form-horizontal" action="{{ path('image_add_new') }}" method="POST">
+            <form enctype="multipart/form-data" class="form-horizontal" action="{{ path('song_add_new') }}" method="POST">
                 <fieldset>
-                    <legend><strong>Add a picture</strong></legend>
+                    <legend><strong>Add a song</strong></legend>
 
 
 
 
                     <div class="form-group ">
-                        <label class="col-sm-4 control-label" for="image_imageName">Your picture: </label>
+                        <label class="col-sm-4 control-label" for="song_songName">Your song: </label>
                         <div class="col-sm-4">
 
-                            <img id="picture" src="" class="col-sm-6" style="max-width:200px">
-                            <input type="file"  id="image_imageName"
-                                   name="image[imageName]" onchange="readURL(this);" />
-                            <label for="image[imageName]">Choose a picture(PNG, JPG, JPEG, GIF)</label>
+                            <input type="file"  id="song_songName"
+                                   name="song[songName]"/>
+                            <label for="song[songName]">Choose a song(MP3, WAV, AIFF)</label>
 
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-4 control-label" for="image_description">Description: </label>
+                        <label class="col-sm-4 control-label" for="song_description">Description: </label>
                         <div class="col-sm-4">
-                            <input type="text" name="image[description]" id="image_description"/>
+                            <input type="text" name="song[description]" id="song_description"/>
                         </div>
                     </div>
 

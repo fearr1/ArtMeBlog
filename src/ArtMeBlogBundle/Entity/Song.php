@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: Cecko
- * Date: 12/17/2016
- * Time: 4:33 PM
+ * Date: 12/18/2016
+ * Time: 3:45 AM
  */
 
 namespace ArtMeBlogBundle\Entity;
@@ -12,14 +12,13 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Image
+ * Song
  *
- * @ORM\Table(name="images")
- * @ORM\Entity(repositoryClass="ArtMeBlogBundle\Repository\ImageRepository")
+ * @ORM\Table(name="songs")
+ * @ORM\Entity(repositoryClass="ArtMeBlogBundle\Repository\SongRepository")
  */
-class Image
+class Song
 {
-
     /**
      * @var int
      *
@@ -29,17 +28,13 @@ class Image
      */
     private $id;
 
-    // "image/png", "image/jpg", "image/jpeg", "image/gif"
-
     /**
      * @ORM\Column(type="string")
      *
-     * @Assert\NotBlank(message="Please, upload the product brochure as a PNG file.")
-     * @Assert\File(
-     *     mimeTypes = {"image/png", "image/jpg", "image/jpeg", "image/gif"}
-     *     )
+     * @Assert\NotBlank(message="Please, upload the song as a MP3, WAV, AIFF file.")
+     * @Assert\File(mimeTypes={"audio/mp3"})
      */
-    private $imageName;
+    private $songName;
 
     /**
      * @var int
@@ -51,7 +46,7 @@ class Image
     /**
      * @var User
      *
-     * @ORM\ManyToOne(targetEntity="ArtMeBlogBundle\Entity\User", inversedBy="images")
+     * @ORM\ManyToOne(targetEntity="ArtMeBlogBundle\Entity\User", inversedBy="songs")
      * @ORM\JoinColumn(name="authorId", referencedColumnName="id")
      */
     private $author;
@@ -79,12 +74,10 @@ class Image
         $this->description = $description;
     }
 
-
-
     /**
      * @param User $author
      *
-     * @return Image
+     * @return Song
      */
     public function setAuthor(User $author = null)
     {
@@ -100,11 +93,10 @@ class Image
         return $this->author;
     }
 
-
     /**
      * @param int $authorId
      *
-     * @return Image
+     * @return Song
      */
     public function setAuthorId(int $authorId)
     {
@@ -120,17 +112,19 @@ class Image
         return $this->authorId;
     }
 
-    public function getImageName()
+    public function setSongName($songName)
     {
-        return $this->imageName;
-    }
-
-    public function setImageName($imageName)
-    {
-        $this->imageName = $imageName;
+        $this->songName = $songName;
 
         return $this;
     }
+
+    public function getSongName()
+    {
+        return $this->songName;
+    }
+
+
 
     /**
      * Get id

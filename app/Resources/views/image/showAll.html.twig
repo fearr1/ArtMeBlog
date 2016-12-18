@@ -2,25 +2,28 @@
 
 {% block main %}
     <div class="container body-content">
-        <div class="row">
+        <div class="form-group-sm" >
+
+
             {% for picture in pictures %}
                 <div class="col-md-4">
-                    <article>
-                        <header>
+
+                        <div class="block" style="width:300px">
+
+                            <h2 class="text-center" >{{ picture.description }}</h2>
 
 
-                            <div class="form-group ">
-                                <div class="col-md-6 ">
-                                    <img class="img-responsive img-rounded" style="max-height: auto;" src="{{ asset('uploads/images/' ~ picture.imageName) }}"/>
-                                </div>
-                            </div>
+                        <img class="img-responsive img-rounded center-block" style="max-height: 200px" src="{{ asset('uploads/images/' ~ picture.imageName) }}"/>
 
+                            <footer class="text-center">
+                                <small class="author">
+                                     by: {{ picture.author }}
+                                </small>
+                            </footer>
+                        </div>
 
-
-
-                        </header>
-                    </article>
                 </div>
+
             {% endfor %}
         </div>
     </div>

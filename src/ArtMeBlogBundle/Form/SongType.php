@@ -8,13 +8,13 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 
-class ImageType extends AbstractType
+class SongType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
 
-            ->add('imageName', FileType::class, array('label' => 'Image (PNG file)'))
+            ->add('songName', FileType::class, array('label' => 'Song (MP3, WAV or AIFF file)'))
             ->add('description', TextType::class)
 
         ;
@@ -23,12 +23,12 @@ class ImageType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'ArtMeBlogBundle\Entity\Image',
+            'data_class' => 'ArtMeBlogBundle\Entity\Song',
         ));
     }
 
     public function getName()
     {
-        return 'art_me_blog_bundle_image_type';
+        return 'art_me_blog_bundle_song_type';
     }
 }

@@ -18,6 +18,7 @@ parameters:
     locale: en
     app.notifications.email_sender: anonymous@example.com
     images_directory: '%kernel.root_dir%/../web/uploads/images'
+    songs_directory: '%kernel.root_dir%/../web/uploads/songs'
 
 # Basic configuration for the Symfony framework features
 framework:

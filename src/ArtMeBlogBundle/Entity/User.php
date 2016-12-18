@@ -52,6 +52,51 @@ class User implements UserInterface
     private $poems;
 
     /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="ArtMeBlogBundle\Entity\Image", mappedBy="author")
+     */
+    private $images;
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getImages()
+    {
+        return $this->poems;
+    }
+
+    public function addImage(Image $image){
+        $this->images[] = $image;
+
+        return $this;
+    }
+
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="ArtMeBlogBundle\Entity\Song", mappedBy="author")
+     */
+    private $songs;
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSongs()
+    {
+        return $this->songs;
+    }
+
+    public function addSongs(Song $song){
+        $this->songs[] = $song;
+
+        return $this;
+    }
+
+
+
+    /**
      * @return \Doctrine\Common\Collections\Collection
      */
     public function getPoems()
