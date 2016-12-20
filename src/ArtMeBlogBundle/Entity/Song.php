@@ -32,7 +32,9 @@ class Song
      * @ORM\Column(type="string")
      *
      * @Assert\NotBlank(message="Please, upload the song as a MP3, WAV, AIFF file.")
-     * @Assert\File(mimeTypes={"audio/mp3"})
+     * @Assert\File(
+     *     maxSize = "10M",
+     *     mimeTypes={"audio/mpeg", "audio/x-aiff", "audio/x-wav"})
      */
     private $songName;
 
@@ -54,7 +56,7 @@ class Song
     /**
      * @var string;
      *
-     * @ORM\Column(name="description", type="string", length=30)
+     * @ORM\Column(name="description", type="string", length=20)
      */
     private $description;
 

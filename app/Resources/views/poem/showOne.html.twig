@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+
+
+    <div class="container-fluid col-sm-3 col-sm-offset-6">
+        <h2 style="margin-left: 30px; margin-bottom: 30px">{{ poem.title}}</h2>
+    </div>
+
+    <div class="container-fluid col-sm-6 col-sm-offset-5" style="word-wrap: break-word">
+        <p >{{ poem.content }}</p>
+
+    </div>
+
+    <div class="author container-fluid col-sm-3 col-sm-offset-5">
+        <small class="author">by: {{ poem.author }}</small>
+    </div>
+    <div class="container-fluid col-sm-4">
+        <a class="btn btn-default btn-sm" style="background-color: #18bc9c; border-color: #128f76" href="{{ path('poem_show_all') }}">back</a>
+    </div>
+
+{% endblock %}
+

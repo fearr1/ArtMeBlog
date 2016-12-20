@@ -2,5 +2,31 @@
 
 {% block main %}
 
+    <div class="container body-content">
+        <div class="form-group-sm" >
+            <h1 style="margin-bottom: 50px">All songs: </h1>
+
+            {% for song in songs %}
+                <div class="col-md-4">
+                    <div class="block" style="min-height: 200px">
+                        <a href="#">
+                        <p class="text-center" ><strong> {{ song.description }} </strong></p>
+                            </a>
+
+                        <audio controls preload="auto">
+                            <source src="{{ asset('uploads/songs/' ~ song.songName) }}">
+                        </audio>
+
+                        <footer class="text-center">
+                            <small class="author">
+                                by: {{ song.author }}
+                            </small>
+                        </footer>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
 {% endblock %}
 

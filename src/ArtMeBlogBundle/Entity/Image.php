@@ -57,9 +57,12 @@ class Image
     private $author;
 
     /**
+     * * @Assert\Length(
+     *     max = 15,
+     *     maxMessage="Max length of description (15 chars)"
+     * )
      * @var string;
-     *
-     * @ORM\Column(name="description", type="string", length=30)
+     * @ORM\Column(name="description", type="string", length = 15)
      */
     private $description;
 

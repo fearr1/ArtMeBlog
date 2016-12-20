@@ -1,36 +1,38 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
-<div class="container body-content">
-    <div class="row">
-        {% for poem in poems %}
-        <div class="col-md-6">
-            <article>
-                <header>
-                    <h2 style="width:300px">{{ poem.title }}</h2>
-                </header>
+    <h1>All poems: </h1>
+    <div class="container body-content">
+        <div class="row">
+            {% for poem in poems %}
+                <div class="col-md-6" style="min-height: 300px">
+                    <article>
+                        <header>
+                            <h2 style="text-align: center">{{ poem.title }}</h2>
+                        </header>
 
-                <p>
-                    {{ poem.summary }}
-                </p>
+                        <p style="word-wrap: break-word">
+                            {{ poem.summary }}
+                        </p>
 
-                <small class="author">
-                    {{ poem.author }}
-                </small>
+                        <small class="author">
+                           by: {{ poem.author }}
+                        </small>
 
-                <footer>
-
-                    <div class="pull-right">
-                        <a
-                           href="#"><strong>Read more &raquo;</strong></a>
-                    </div>
-
-                </footer>
-            </article>
+                        <footer>
+                            <div class="pull-right">
+                                <a class="btn btn-sm btn-default" style="background-color: #18bc9c; border-color: #128f76" href="{{ path('poem_show_one',{id: poem.id}) }}">
+                                    <strong>details &raquo;</strong></a>
+                            </div>
+                        </footer>
+                    </article>
+                </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
-</div>
+
 
 {% endblock %}
+
+
 

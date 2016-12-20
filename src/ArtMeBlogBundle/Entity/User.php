@@ -255,6 +255,8 @@ class User implements UserInterface
     public function __construct()
     {
         $this->poems = new ArrayCollection();
+        $this->songs = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 }
 

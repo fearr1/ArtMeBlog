@@ -2,6 +2,7 @@
 
 namespace ArtMeBlogBundle\Controller;
 
+use ArtMeBlogBundle\Form\ImageDeleteType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -71,6 +72,39 @@ class ImageController extends Controller
         $pictures = $this->getDoctrine()->getRepository(Image::class)->findAll();
         return $this->render('image/showAll.html.twig', array(
             'pictures' => $pictures
+        ));
+    }
+
+    /**
+     * @Route("/picture/delete/{id}", name="image_delete")
+     * @param $id
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function deleteImage(Request $request, $id){
+        $image = $this->getDoctrine()->getRepository(Image::class)->find($id);
+        $imageName = $image->getImageName();
+        $path = $this->getParameter('images_directory');
+        $file = file($path."/".$imageName);
+        $form = $this->createForm(ImageDeleteType::class, $image);
+
+
+
+        $form->handleRequest($request);
+        if($form->isSubmitted()) {
+            //deleting the file from uploads/images..
+            unlink($path . '/' . $imageName);
+            $em = $this->getDoctrine()->getEntityManager();
+            $em->remove($image);
+            $em->flush();
+
+            return $this->redirectToRoute('pictures_show_all');
+        }
+
+        return $this->render('image/delete.html.twig', array(
+            'image' => $image,
+            'form' => $form->createView()
         ));
     }
 

@@ -3,6 +3,7 @@
 namespace ArtMeBlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Poem
@@ -24,13 +25,13 @@ class Poem
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=30)
+     * @ORM\Column(name="title", type="string", length=25)
      */
     private $title;
 
     /**
      * @var string
-     *
+     * @Assert\Length(min= 40)
      * @ORM\Column(name="content", type="text")
      */
     private $content;
@@ -105,7 +106,12 @@ class Poem
      */
     public function setSummary()
     {
-         $this->summary = substr($this->getContent(), 0, strlen($this->getContent()) / 2) . "...";
+        if(strlen($this->getContent())<=30){
+            $this->summary = $this->getContent();
+        }
+        else {
+            $this->summary = substr($this->getContent(), 0, 100) . "...";
+        }
     }
 
     /**

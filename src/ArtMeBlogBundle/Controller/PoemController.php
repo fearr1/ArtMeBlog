@@ -45,4 +45,16 @@ class PoemController extends Controller
         $poems = $this->getDoctrine()->getRepository(Poem::class)->findAll();
         return $this->render('poem/showAll.html.twig', ['poems' => $poems]);
     }
+
+    /**
+     * @Route("/poem/show/{id}", name="poem_show_one")
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function showOne( $id){
+        $poem = $this->getDoctrine()->getRepository(Poem::class)->find($id);
+        return $this->render('poem/showOne.html.twig', array(
+            'poem' => $poem
+        ));
+    }
 }

@@ -1,28 +1,28 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
-    <div class="container body-content">
+    <div class="container body-content" xmlns="http://www.w3.org/1999/html">
         <div class="form-group-sm" >
-
+        <h1>All pictures:</h1>
 
             {% for picture in pictures %}
-                <div class="col-md-4">
 
-                        <div class="block" style="width:300px">
-
-                            <h2 class="text-center" >{{ picture.description }}</h2>
-
-
-                        <img class="img-responsive img-rounded center-block" style="max-height: 200px" src="{{ asset('uploads/images/' ~ picture.imageName) }}"/>
-
+                <div class="col-md-4 block" style="min-height: 340px; border:2px solid lightgray; border-radius:10px; margin-bottom: 2px">
+                            <h2 class="text-center" style="word-wrap: break-word" >{{ picture.description }}</h2>
+                    <a href="#">
+                        <img class="img-responsive img-rounded center-block" style="max-height:200px" src="{{ asset('uploads/images/' ~ picture.imageName) }}"/>
+                    </a>
                             <footer class="text-center">
-                                <small class="author">
+                                <small class="author" style="margin-right: 15px">
                                      by: {{ picture.author }}
                                 </small>
                             </footer>
+                    {% if app.User %}
+                    <a class="btn btn-xs btn-danger col-sm-2 col-sm-offset-5" href="{{ path('image_delete', {id: picture.id}) }}" style="margin-top: 10px; margin-bottom:10px">delete</a>
+                    {% endif %}
                         </div>
 
-                </div>
+
 
             {% endfor %}
         </div>
