@@ -26,13 +26,17 @@ class Poem
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=25)
+     * @Assert\Length(max = 25,
+     *     maxMessage="Max chars allowed - 25")
      */
     private $title;
 
     /**
      * @var string
-     * @Assert\Length(min= 40)
+     *
      * @ORM\Column(name="content", type="text")
+     * @Assert\Length(min= 40,
+     *    minMessage="Minimum {{ limit }} chars")
      */
     private $content;
 

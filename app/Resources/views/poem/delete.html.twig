@@ -3,23 +3,23 @@
 {% block main %}
     <div class="container body-content span=8 offset=2">
         <div class="well" style="background-color: #80efd2">
-            <form class="form-horizontal" action="{{ path('poem_create') }}" method="POST" novalidate="novalidate">
+            <form class="form-horizontal" action="{{ path('poem_delete', { id: poem.id}) }}" method="POST">
                 <fieldset>
-                    <legend><strong>Add a Poem</strong></legend>
+                    <legend><strong>Delete a Poem!!!</strong></legend>
 
                     <div class="form-group">
-                        <label class="col-sm-4 control-label" for="poem_title">Poem Title: <br/><small style="color: lightslategrey">max chars(25)</small></label>
+                        <label class="col-sm-4 control-label" for="poem_title">Poem Title</label>
                         <div class="col-sm-4 ">
-                            <input type="text" class="form-control" id="poem_title" placeholder="Poem title (Max 25 chars)"
-                                   name="poem[title]">
+                            <input type="text" class="form-control" id="poem_title" value="{{ poem.title }}"
+                                   name="poem[title]" readonly>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-4 control-label" for="poem_content">Content: <br/><small style="color: lightslategrey">min chars(40)</small></label>
+                        <label class="col-sm-4 control-label" for="poem_content">Content</label>
                         <div class="col-sm-6">
                         <textarea class="form-control" rows="10" id="poem_content"
-                                  name="poem[content]" placeholder="Write your poem here..(Min 40 chars)"></textarea>
+                                  name="poem[content]" readonly>{{ poem.content }}</textarea>
                         </div>
                     </div>
 
@@ -28,7 +28,7 @@
                     <div class="form-group">
                         <div class="col-sm-4 col-sm-offset-4">
                             <a class="btn btn-default" style="border-color: #128f76" href="{{ path('blog_index') }}">Cancel</a>
-                            <button type="submit" style="background-color: #18bc9c; border-color: #128f76" class="btn btn-primary">Add</button>
+                            <button type="submit" style="border-color: #128f76" class="btn btn-danger">Delete</button>
                         </div>
                     </div>
                 </fieldset>

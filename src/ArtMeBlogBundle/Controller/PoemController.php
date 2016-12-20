@@ -7,6 +7,7 @@ use ArtMeBlogBundle\Form\PoemType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class PoemController extends Controller
@@ -55,6 +56,56 @@ class PoemController extends Controller
         $poem = $this->getDoctrine()->getRepository(Poem::class)->find($id);
         return $this->render('poem/showOne.html.twig', array(
             'poem' => $poem
+        ));
+    }
+
+    /**
+     * @Route("/poem/delete/{id}", name="poem_delete")
+     * @param Request $request
+     * @param $id
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+     * @return RedirectResponse
+     */
+    public function deletePoem(Request $request, $id ){
+        $poem = $this->getDoctrine()->getRepository(Poem::class)->find($id);
+        $form = $this->createForm(PoemType::class, $poem);
+
+        $form->handleRequest($request);
+        if($form->isValid() && $form->isSubmitted()){
+            $em = $this->getDoctrine()->getEntityManager();
+            $em->remove($poem);
+            $em->flush();
+
+            return $this->redirectToRoute('poem_show_all');
+        }
+        return $this->render('poem/delete.html.twig', array(
+            'poem' => $poem,
+            'form' => $form->createView()
+        ));
+    }
+
+    /**
+     * @Route("/poem/edit/{id}", name="poem_edit")
+     * @param Request $request
+     * @param $id
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+     * @return RedirectResponse
+     */
+    public function editPoem(Request $request, $id ){
+        $poem = $this->getDoctrine()->getRepository(Poem::class)->find($id);
+        $form = $this->createForm(PoemType::class, $poem);
+
+        $form->handleRequest($request);
+        if($form->isValid() && $form->isSubmitted()){
+            $em = $this->getDoctrine()->getEntityManager();
+            $em->persist($poem);
+            $em->flush();
+
+            return $this->redirectToRoute('poem_show_all');
+        }
+        return $this->render('poem/edit.html.twig', array(
+            'poem' => $poem,
+            'form' => $form->createView()
         ));
     }
 }

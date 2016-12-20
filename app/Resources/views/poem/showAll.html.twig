@@ -5,10 +5,10 @@
     <div class="container body-content">
         <div class="row">
             {% for poem in poems %}
-                <div class="col-md-6" style="min-height: 300px">
+                <div class="col-md-6" style="border: 2px solid lightgray; border-radius: 10px; margin-bottom: 1px; margin-left:1px; max-width: 550px; min-height: 200px">
                     <article>
                         <header>
-                            <h2 style="text-align: center">{{ poem.title }}</h2>
+                            <h2 style="text-align: center; word-wrap: break-word">{{ poem.title }}</h2>
                         </header>
 
                         <p style="word-wrap: break-word">
@@ -19,12 +19,12 @@
                            by: {{ poem.author }}
                         </small>
 
-                        <footer>
-                            <div class="pull-right">
-                                <a class="btn btn-sm btn-default" style="background-color: #18bc9c; border-color: #128f76" href="{{ path('poem_show_one',{id: poem.id}) }}">
+
+                            <div class="col-sm-offset-10" style="margin-top: 5px">
+                                <a class="btn btn-sm btn-default" style="background-color: #18bc9c; border-color: #128f76; margin-bottom: 5px" href="{{ path('poem_show_one',{id: poem.id}) }}">
                                     <strong>details &raquo;</strong></a>
                             </div>
-                        </footer>
+
                     </article>
                 </div>
             {% endfor %}

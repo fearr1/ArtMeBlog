@@ -3,21 +3,25 @@
 {% block main %}
 
 
-    <div class="container-fluid col-sm-3 col-sm-offset-6">
-        <h2 style="margin-left: 30px; margin-bottom: 30px">{{ poem.title}}</h2>
-    </div>
+<div class="col-sm-8 col-sm-offset-4" style="border: 2px solid lightgray; border-radius: 10px; width: auto; max-width: 600px">
 
-    <div class="container-fluid col-sm-6 col-sm-offset-5" style="word-wrap: break-word">
-        <p >{{ poem.content }}</p>
+        <h2 style=" margin-bottom: 30px; word-wrap:break-word; text-align: center">{{ poem.title}}</h2>
 
-    </div>
 
-    <div class="author container-fluid col-sm-3 col-sm-offset-5">
-        <small class="author">by: {{ poem.author }}</small>
+
+        <p style="word-wrap: break-word; white-space: pre" class="col-sm-7 col-sm-offset-3">{{ poem.content }}</p>
+
+
+
+
+        <small class="author col-sm-offset-8">by: {{ poem.author }}</small>
+
+    <div class="col-sm-12" style="margin-bottom:10px; margin-top:5px">
+        <a class="btn btn-default btn-sm" style="border-color: #128f76; margin-top:5px" href="{{ path('poem_show_all') }}">back</a>
+        <a class="btn btn-success btn-sm" style="background-color: #18bc9c; border-color: #128f76; margin-top:5px" href="{{ path('poem_edit', {id: poem.id}) }}">edit</a>
+        <a class="btn btn-danger btn-sm" style="border-color: #128f76; margin-top:5px" href="{{ path('poem_delete', {id: poem.id}) }}">delete</a>
     </div>
-    <div class="container-fluid col-sm-4">
-        <a class="btn btn-default btn-sm" style="background-color: #18bc9c; border-color: #128f76" href="{{ path('poem_show_all') }}">back</a>
-    </div>
+</div>
 
 {% endblock %}
 
