@@ -237,6 +237,32 @@ class User implements UserInterface
     }
 
     /**
+     * @param Poem $poem
+     * @return bool
+     */
+    public function isAuthorPoem(Poem $poem){
+        return $poem->getAuthor() === $this;
+    }
+
+    /**
+     * @param Song $song
+     * @return bool
+     */
+    public function isAuthorSong(Song $song){
+        return $song->getAuthor() === $this;
+    }
+
+    /**
+     * @param Image $image
+     * @return bool
+     */
+    public function isAuthorImage(Image $image){
+        return $image->getAuthor() === $this;
+    }
+
+
+
+    /**
      * Removes sensitive data from the user.
      *
      * This is important if, at any given point, sensitive information like

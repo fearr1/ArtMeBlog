@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+
+    <div class="container body-content span=8 offset=2">
+
+
+        <img class="center-block img-responsive" src="{{ asset('uploads/images/' ~ imageName) }}" style="max-width:500px; max-height: 500px; margin-bottom: 10px"/>
+        <a class="btn btn-default btn-sm center-block" href="{{ path('pictures_show_all') }} " style="border-color: #18bc9c; width: 50px">back</a>
+    </div>
+
+
+{% endblock %}

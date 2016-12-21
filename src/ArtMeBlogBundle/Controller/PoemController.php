@@ -68,6 +68,20 @@ class PoemController extends Controller
      */
     public function deletePoem(Request $request, $id ){
         $poem = $this->getDoctrine()->getRepository(Poem::class)->find($id);
+
+        if($poem === null){
+            return $this->redirectToRoute('poem_show_all');
+        }
+
+        $currentUser = $this->getUser();
+        if($currentUser != $poem->getAuthor()){
+            return $this->redirectToRoute('poem_show_all');
+        }
+        $currentUser = $this->getUser();
+        if(!$currentUser->isAuthorPoem($poem))
+        {
+            return $this->redirectToRoute('poem_show_all');
+        }
         $form = $this->createForm(PoemType::class, $poem);
 
         $form->handleRequest($request);
@@ -93,6 +107,15 @@ class PoemController extends Controller
      */
     public function editPoem(Request $request, $id ){
         $poem = $this->getDoctrine()->getRepository(Poem::class)->find($id);
+
+        if($poem === null){
+            return $this->redirectToRoute('poem_show_all');
+        }
+
+        $currentUser = $this->getUser();
+        if($currentUser != $poem->getAuthor()){
+            return $this->redirectToRoute('poem_show_all');
+        }
         $form = $this->createForm(PoemType::class, $poem);
 
         $form->handleRequest($request);

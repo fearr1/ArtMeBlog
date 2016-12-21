@@ -84,6 +84,14 @@ class ImageController extends Controller
      */
     public function deleteImage(Request $request, $id){
         $image = $this->getDoctrine()->getRepository(Image::class)->find($id);
+        if($image === null) {
+            return $this->redirectToRoute('pictures_show_all');
+        }
+        $currentUser = $this->getUser();
+        if($currentUser != $image->getAuthor()){
+            return $this->redirectToRoute('pictures_show_all');
+        }
+
         $imageName = $image->getImageName();
         $path = $this->getParameter('images_directory');
         $file = file($path."/".$imageName);
@@ -105,6 +113,19 @@ class ImageController extends Controller
         return $this->render('image/delete.html.twig', array(
             'image' => $image,
             'form' => $form->createView()
+        ));
+    }
+
+    /**
+     * @Route("/picture/show/{id}", name="picture_show_one")
+     * @param $id
+     * @return RedirectResponse
+     */
+    public function showOne($id){
+        $imageName = $this->getDoctrine()->getRepository(Image::class)->find($id)->getImageName();
+
+        return $this->render('image/showOne.html.twig', array(
+            'imageName' => $imageName
         ));
     }
 

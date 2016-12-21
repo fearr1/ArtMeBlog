@@ -3,9 +3,14 @@
 {% block body_id 'profile' %}
 
 {% block main %}
-    <div>
-        {{ user.email }}
-        <br>
-        {{ user.fullName }}
+<div class="container">
+    <h2 class="col-sm-12">This page is not developed yet, you can see the art pages instead...</h2>
+</div>
+
+    <div style="padding:5px; margin-top:20px">
+    <h3 style="word-wrap: break-word">Your full name is: {{ user.fullName }}</h3>
+    <h3 style="word-wrap: break-word">Your username is: {{ user.email }}</h3>
     </div>
+
+
 {% endblock %}

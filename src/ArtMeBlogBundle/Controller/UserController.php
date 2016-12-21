@@ -2,6 +2,8 @@
 
 namespace ArtMeBlogBundle\Controller;
 
+use ArtMeBlogBundle\Entity\Image;
+use ArtMeBlogBundle\Entity\Poem;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -60,4 +62,6 @@ class UserController extends Controller
         $user = $this->getUser();
         return $this->render("user/profile.html.twig", ['user'=>$user]);
     }
+
+
 }

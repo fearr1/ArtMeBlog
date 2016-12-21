@@ -55,8 +55,9 @@ class Song
 
     /**
      * @var string;
-     *
-     * @ORM\Column(name="description", type="string", length=20)
+     * @Assert\Length(max=30,
+     *     maxMessage="Max characters 30")
+     * @ORM\Column(name="description", type="string", length=30)
      */
     private $description;
 
@@ -96,11 +97,11 @@ class Song
     }
 
     /**
-     * @param int $authorId
+     * @param integer $authorId
      *
      * @return Song
      */
-    public function setAuthorId(int $authorId)
+    public function setAuthorId($authorId)
     {
         $this->authorId = $authorId;
         return $this;

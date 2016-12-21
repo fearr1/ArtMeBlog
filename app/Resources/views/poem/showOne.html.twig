@@ -9,7 +9,7 @@
 
 
 
-        <p style="word-wrap: break-word; white-space: pre" class="col-sm-7 col-sm-offset-3">{{ poem.content }}</p>
+        <p style="word-wrap: break-word; white-space: pre-line" class="col-sm-7 col-sm-offset-3">{{ poem.content }}</p>
 
 
 
@@ -18,8 +18,10 @@
 
     <div class="col-sm-12" style="margin-bottom:10px; margin-top:5px">
         <a class="btn btn-default btn-sm" style="border-color: #128f76; margin-top:5px" href="{{ path('poem_show_all') }}">back</a>
+        {% if app.getUser and (app.getUser.isAuthorPoem(poem)) %}
         <a class="btn btn-success btn-sm" style="background-color: #18bc9c; border-color: #128f76; margin-top:5px" href="{{ path('poem_edit', {id: poem.id}) }}">edit</a>
         <a class="btn btn-danger btn-sm" style="border-color: #128f76; margin-top:5px" href="{{ path('poem_delete', {id: poem.id}) }}">delete</a>
+        {% endif %}
     </div>
 </div>
 

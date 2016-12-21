@@ -1,32 +1,44 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
+    <link rel="stylesheet" href="{{ asset('css/imageViewer.css') }}"/>
     <div class="container body-content">
         <div class="form-group-sm" >
         <h1>All pictures:</h1>
 
+
+
             {% for picture in pictures %}
 
                 <div class="col-md-4 block" style="min-height: 340px; border:2px solid lightgray; border-radius:10px; margin-bottom: 2px">
-                            <h2 class="text-center" style="word-wrap: break-word" >{{ picture.description }}</h2>
-                    <a href="#">
-                        <img class="img-responsive img-rounded center-block" style="max-height:200px" src="{{ asset('uploads/images/' ~ picture.imageName) }}"/>
-                    </a>
+                            <h3 class="text-center" style="word-wrap: break-word" >{{ picture.description }}</h3>
+
+                        <a href="{{ path('picture_show_one', {id: picture.id}) }}">
+                        <img class="img-responsive img-rounded center-block" id="('id' : {{ picture.id }})" style="max-height:200px" src="{{ asset('uploads/images/' ~ picture.imageName) }}"/>
+                        </a>
                             <footer class="text-center">
                                 <small class="author" style="margin-right: 15px">
                                      by: {{ picture.author }}
                                 </small>
                             </footer>
-                    {% if app.User %}
-                    <a class="btn btn-xs btn-danger col-sm-2 col-sm-offset-5" href="{{ path('image_delete', {id: picture.id}) }}" style="margin-top: 10px; margin-bottom:10px">delete</a>
+                    {% if app.getUser and (app.getUser.isAuthorImage(picture)) %}
+                    <a class="btn btn-xs btn-danger col-sm-2 col-sm-offset-5" href="{{ path('image_delete', {id: picture.id}) }}" style="margin-top: 10px; margin-bottom:10px; border-color: #18bc9c">delete</a>
                     {% endif %}
                         </div>
 
 
-
             {% endfor %}
+
+
+
         </div>
     </div>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="img01" style="width:50%">
+    </div>
+    <script src="{{ asset('js/imageViewer.js') }}"></script>
 
 {% endblock %}
 

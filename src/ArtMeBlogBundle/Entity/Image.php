@@ -34,7 +34,7 @@ class Image
     /**
      * @ORM\Column(type="string")
      *
-     * @Assert\NotBlank(message="Please, upload the product brochure as a PNG file.")
+     * @Assert\NotBlank(message="Please, upload the picture PNG file.")
      * @Assert\File(
      *     mimeTypes = {"image/png", "image/jpg", "image/jpeg", "image/gif"}
      *     )
@@ -58,11 +58,11 @@ class Image
 
     /**
      * * @Assert\Length(
-     *     max = 15,
-     *     maxMessage="Max length of description (15 chars)"
+     *     max = 30,
+     *     maxMessage="Max length of description (30 chars)"
      * )
      * @var string;
-     * @ORM\Column(name="description", type="string", length = 15)
+     * @ORM\Column(name="description", type="string", length = 30)
      */
     private $description;
 
