@@ -60,8 +60,44 @@ class UserController extends Controller
     public function profileAction()
     {
         $user = $this->getUser();
-        return $this->render("user/profile.html.twig", ['user'=>$user]);
+        return $this->render("user/profile.html.twig", ['user' => $user]);
     }
 
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @Route("/profile/edit", name="profile_edit")
+     */
+    public function editAction(Request $request)
+    {
+        $user = $this->getUser();
+        $form = $this->createForm(UserType::class, $user);
+
+        if ($user === null) {
+            return $this->redirectToRoute('security_login');
+        }
+
+        $oldPassword = $user->getPassword();
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            $newPassword = $user->getPassword();
+            if ($newPassword == null) {
+                $user->setPassword($oldPassword);
+            } else {
+                $password = $this->get('security.password_encoder')
+                    ->encodePassword($user, $user->getPassword());
+                $user->setPassword($password);
+            }
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+
+            return $this->redirectToRoute('user_profile');
+        }
+        return $this->render("user/editProfile.html.twig", array(
+            'user' => $user,
+            'form' => $form->createView()));
+    }
 
 }

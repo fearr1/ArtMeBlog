@@ -1,44 +1,66 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
-    <link rel="stylesheet" href="{{ asset('css/imageViewer.css') }}"/>
+
     <div class="container body-content">
-        <div class="form-group-sm" >
-        <h1>All pictures:</h1>
-
-
+        <div class="form-group-sm">
+            <h1>All pictures:</h1>
 
             {% for picture in pictures %}
 
-                <div class="col-md-4 block" style="min-height: 340px; border:2px solid lightgray; border-radius:10px; margin-bottom: 2px">
-                            <h3 class="text-center" style="word-wrap: break-word" >{{ picture.description }}</h3>
+                <div class="col-md-4 block"
+                     style="min-height: 340px; border:2px solid lightgray; border-radius:10px; margin-bottom: 2px">
+                    <h3 class="text-center" style="word-wrap: break-word">{{ picture.description }}</h3>
 
-                        <a href="{{ path('picture_show_one', {id: picture.id}) }}">
-                        <img class="img-responsive img-rounded center-block" id="('id' : {{ picture.id }})" style="max-height:200px" src="{{ asset('uploads/images/' ~ picture.imageName) }}"/>
-                        </a>
-                            <footer class="text-center">
-                                <small class="author" style="margin-right: 15px">
-                                     by: {{ picture.author }}
-                                </small>
-                            </footer>
+                    <img class="img-responsive img-rounded center-block" data-type="imageresource"
+                         style="max-height:200px;"
+                         src="{{ asset('uploads/images/' ~ picture.imageName) }}"/>
+
+                    <footer class="text-center">
+                        <small class="author" style="margin-right: 15px">
+                            by: {{ picture.author }}
+                        </small>
+                    </footer>
                     {% if app.getUser and (app.getUser.isAuthorImage(picture)) %}
-                    <a class="btn btn-xs btn-danger col-sm-2 col-sm-offset-5" href="{{ path('image_delete', {id: picture.id}) }}" style="margin-top: 10px; margin-bottom:10px; border-color: #18bc9c">delete</a>
+                        <a class="btn btn-xs btn-danger col-sm-2 col-sm-offset-5"
+                           href="{{ path('image_delete', {id: picture.id}) }}"
+                           style="margin-top: 10px; margin-bottom:10px; border-color: #18bc9c">delete</a>
                     {% endif %}
-                        </div>
-
-
+                </div>
             {% endfor %}
-
 
 
         </div>
     </div>
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
-        <span class="close">&times;</span>
-        <img class="modal-content" id="img01" style="width:50%">
+
+    <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span
+                                aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Image preview</h4>
+                </div>
+                <div class="modal-body">
+                    <img id="imagepreview" style="max-width:400px; overflow:hidden" class="center-block">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"
+                            style="background-color: #18bc9c; border-color: #128f76">Close
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
-    <script src="{{ asset('js/imageViewer.js') }}"></script>
 
 {% endblock %}
+{% block imageViewer %}
+    <script>
+        $("[data-type='imageresource']").click(function () {
+            $('#imagepreview').attr('src', $(this).attr('src'));
+            $('#imagemodal').modal();
 
+        });
+    </script>
+{% endblock %}

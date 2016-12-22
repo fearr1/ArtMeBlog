@@ -83,7 +83,6 @@ class Image
     }
 
 
-
     /**
      * @param User $author
      *

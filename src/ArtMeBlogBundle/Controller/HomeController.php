@@ -16,6 +16,6 @@ class HomeController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('blog/index.html.twig');
+        return $this->redirectToRoute('blog/index.html.twig');
     }
 }

@@ -32,7 +32,7 @@ class SongController extends Controller
              */
             $file = $song->getSongName();
 
-            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+            $fileName = md5(uniqid()) . '.' . $file->guessExtension();
 
             $file->move(
                 $this->getParameter('songs_directory'),
@@ -54,7 +54,6 @@ class SongController extends Controller
         }
 
 
-
         return $this->render('song/add.html.twig', array(
             'form' => $form->createView(),
         ));
@@ -63,7 +62,8 @@ class SongController extends Controller
     /**
      * @Route("/song/all", name="songs_show_all")
      */
-    public function showAll(){
+    public function showAll()
+    {
         $songs = $this->getDoctrine()->getRepository(Song::class)->findAll();
         return $this->render('song/showAll.html.twig', array(
             'songs' => $songs
@@ -77,24 +77,24 @@ class SongController extends Controller
      * @param Request $request
      * @return RedirectResponse
      */
-    public function deleteSong(Request $request, $id){
+    public function deleteSong(Request $request, $id)
+    {
         $song = $this->getDoctrine()->getRepository(Song::class)->find($id);
-        if($song === null){
+        if ($song === null) {
             return $this->redirectToRoute('songs_show_all');
         }
         $currentUser = $this->getUser();
-        if($currentUser != $song->getAuthor()){
+        if ($currentUser != $song->getAuthor()) {
             return $this->redirectToRoute('songs_show_all');
         }
         $songName = $song->getSongName();
         $path = $this->getParameter('songs_directory');
-        $file = file($path."/".$songName);
+        $file = file($path . "/" . $songName);
         $form = $this->createForm(SongDeleteType::class, $song);
 
 
-
         $form->handleRequest($request);
-        if($form->isSubmitted()) {
+        if ($form->isSubmitted()) {
             //deleting the file from uploads/images..
             unlink($path . '/' . $songName);
             $em = $this->getDoctrine()->getEntityManager();

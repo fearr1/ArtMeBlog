@@ -5,7 +5,8 @@
     <div class="container body-content">
         <div class="row">
             {% for poem in poems %}
-                <div class="col-md-6" style="border: 2px solid lightgray; border-radius: 10px; margin-bottom: 1px; margin-left:1px; max-width: 550px; min-height: 200px">
+                <div class="col-md-6"
+                     style="border: 2px solid lightgray; border-radius: 10px; margin-bottom: 1px; margin-left:1px; max-width: 550px; min-height: 200px">
                     <article>
                         <header>
                             <h2 style="text-align: center; word-wrap: break-word">{{ poem.title }}</h2>
@@ -16,14 +17,15 @@
                         </p>
 
                         <small class="author">
-                           by: {{ poem.author }}
+                            by: {{ poem.author }}
                         </small>
 
-
-                            <div class="col-sm-offset-10" style="margin-top: 5px">
-                                <a class="btn btn-sm btn-default" style="background-color: #18bc9c; border-color: #128f76; margin-bottom: 5px" href="{{ path('poem_show_one',{id: poem.id}) }}">
-                                    <strong>details &raquo;</strong></a>
-                            </div>
+                        <div class="col-sm-offset-10" style="margin-top: 5px">
+                            <a class="btn btn-sm btn-default"
+                               style="background-color: #18bc9c; border-color: #128f76; margin-bottom: 5px"
+                               href="{{ path('poem_show_one',{id: poem.id}) }}">
+                                <strong>details &raquo;</strong></a>
+                        </div>
 
                     </article>
                 </div>

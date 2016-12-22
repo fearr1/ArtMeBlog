@@ -1,6 +1,7 @@
 <?php
 
 namespace ArtMeBlogBundle\Repository;
+
 use Doctrine\ORM\EntityRepository;
 
 /**

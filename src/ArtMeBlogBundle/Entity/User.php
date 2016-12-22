@@ -66,7 +66,8 @@ class User implements UserInterface
         return $this->poems;
     }
 
-    public function addImage(Image $image){
+    public function addImage(Image $image)
+    {
         $this->images[] = $image;
 
         return $this;
@@ -88,12 +89,12 @@ class User implements UserInterface
         return $this->songs;
     }
 
-    public function addSongs(Song $song){
+    public function addSongs(Song $song)
+    {
         $this->songs[] = $song;
 
         return $this;
     }
-
 
 
     /**
@@ -104,7 +105,8 @@ class User implements UserInterface
         return $this->poems;
     }
 
-    public function addPost(Poem $poem){
+    public function addPost(Poem $poem)
+    {
         $this->poems[] = $poem;
 
         return $this;
@@ -240,7 +242,8 @@ class User implements UserInterface
      * @param Poem $poem
      * @return bool
      */
-    public function isAuthorPoem(Poem $poem){
+    public function isAuthorPoem(Poem $poem)
+    {
         return $poem->getAuthor() === $this;
     }
 
@@ -248,7 +251,8 @@ class User implements UserInterface
      * @param Song $song
      * @return bool
      */
-    public function isAuthorSong(Song $song){
+    public function isAuthorSong(Song $song)
+    {
         return $song->getAuthor() === $this;
     }
 
@@ -256,10 +260,10 @@ class User implements UserInterface
      * @param Image $image
      * @return bool
      */
-    public function isAuthorImage(Image $image){
+    public function isAuthorImage(Image $image)
+    {
         return $image->getAuthor() === $this;
     }
-
 
 
     /**

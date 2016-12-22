@@ -110,10 +110,9 @@ class Poem
      */
     public function setSummary()
     {
-        if(strlen($this->getContent())<=30){
+        if (strlen($this->getContent()) <= 100) {
             $this->summary = $this->getContent();
-        }
-        else {
+        } else {
             $this->summary = substr($this->getContent(), 0, 100) . "...";
         }
     }
@@ -121,14 +120,14 @@ class Poem
     /**
      * @return string
      */
-    public function getSummary(){
-        if($this->summary === null){
+    public function getSummary()
+    {
+        if ($this->summary === null) {
             $this->setSummary();
         }
         return $this->summary;
     }
-
-
+    
     /**
      * Get id
      *

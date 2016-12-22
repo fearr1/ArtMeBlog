@@ -20,12 +20,13 @@ class PoemController extends Controller
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function createAction(Request $request){
+    public function createAction(Request $request)
+    {
         $poem = new Poem();
         $form = $this->createForm(PoemType::class, $poem);
 
         $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             $poem->setAuthor($this->getUser());
             $em = $this->getDoctrine()->getEntityManager();
             $em->persist($poem);
@@ -39,10 +40,11 @@ class PoemController extends Controller
     }
 
     /**
-     * @Route("/poem/show/all", name="poem_show_all")
+     * @Route("/poem/show/all",  name="poem_show_all")
      *
      */
-    public function showAllPoems(){
+    public function showAllPoems()
+    {
         $poems = $this->getDoctrine()->getRepository(Poem::class)->findAll();
         return $this->render('poem/showAll.html.twig', ['poems' => $poems]);
     }
@@ -52,7 +54,8 @@ class PoemController extends Controller
      * @param $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function showOne( $id){
+    public function showOne($id)
+    {
         $poem = $this->getDoctrine()->getRepository(Poem::class)->find($id);
         return $this->render('poem/showOne.html.twig', array(
             'poem' => $poem
@@ -66,26 +69,26 @@ class PoemController extends Controller
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @return RedirectResponse
      */
-    public function deletePoem(Request $request, $id ){
+    public function deletePoem(Request $request, $id)
+    {
         $poem = $this->getDoctrine()->getRepository(Poem::class)->find($id);
 
-        if($poem === null){
+        if ($poem === null) {
             return $this->redirectToRoute('poem_show_all');
         }
 
         $currentUser = $this->getUser();
-        if($currentUser != $poem->getAuthor()){
+        if ($currentUser != $poem->getAuthor()) {
             return $this->redirectToRoute('poem_show_all');
         }
         $currentUser = $this->getUser();
-        if(!$currentUser->isAuthorPoem($poem))
-        {
+        if (!$currentUser->isAuthorPoem($poem)) {
             return $this->redirectToRoute('poem_show_all');
         }
         $form = $this->createForm(PoemType::class, $poem);
 
         $form->handleRequest($request);
-        if($form->isValid() && $form->isSubmitted()){
+        if ($form->isValid() && $form->isSubmitted()) {
             $em = $this->getDoctrine()->getEntityManager();
             $em->remove($poem);
             $em->flush();
@@ -105,21 +108,22 @@ class PoemController extends Controller
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @return RedirectResponse
      */
-    public function editPoem(Request $request, $id ){
+    public function editPoem(Request $request, $id)
+    {
         $poem = $this->getDoctrine()->getRepository(Poem::class)->find($id);
 
-        if($poem === null){
+        if ($poem === null) {
             return $this->redirectToRoute('poem_show_all');
         }
 
         $currentUser = $this->getUser();
-        if($currentUser != $poem->getAuthor()){
+        if ($currentUser != $poem->getAuthor()) {
             return $this->redirectToRoute('poem_show_all');
         }
         $form = $this->createForm(PoemType::class, $poem);
 
         $form->handleRequest($request);
-        if($form->isValid() && $form->isSubmitted()){
+        if ($form->isValid() && $form->isSubmitted()) {
             $em = $this->getDoctrine()->getEntityManager();
             $em->persist($poem);
             $em->flush();

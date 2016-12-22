@@ -3,12 +3,14 @@
 {% block main %}
     <div class="container body-content span=8 offset=2">
         <div class="well" style="background-color: #80efd2">
-            <form class="form-horizontal" action="{{ path('poem_edit', {id: poem.id}) }}" method="POST" novalidate="novalidate">
+            <form class="form-horizontal" action="{{ path('poem_edit', {id: poem.id}) }}" method="POST">
                 <fieldset>
                     <legend><strong>Add a Poem</strong></legend>
 
                     <div class="form-group">
-                        <label class="col-sm-4 control-label" for="poem_title">Poem Title: <br/><small style="color: lightslategrey">max chars(25)</small></label>
+                        <label class="col-sm-4 control-label" for="poem_title">Poem Title: <br/>
+                            <small style="color: lightslategrey">max chars(25)</small>
+                        </label>
                         <div class="col-sm-4 ">
                             <input type="text" class="form-control" id="poem_title" value="{{ poem.title }}"
                                    name="poem[title]">
@@ -16,10 +18,13 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-4 control-label" for="poem_content">Content: <br/><small style="color: lightslategrey">min chars(40)</small></label>
+                        <label class="col-sm-4 control-label" for="poem_content">Content: <br/>
+                            <small style="color: lightslategrey">min chars(40)</small>
+                        </label>
                         <div class="col-sm-6">
                         <textarea class="form-control" rows="10" id="poem_content"
-                                  name="poem[content]" placeholder="Write your poem here..(Min 40 chars)">{{ poem.content }}</textarea>
+                                  name="poem[content]"
+                                  placeholder="Write your poem here..(Min 40 chars)">{{ poem.content }}</textarea>
                         </div>
                     </div>
 

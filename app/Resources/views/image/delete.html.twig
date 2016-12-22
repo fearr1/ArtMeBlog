@@ -8,12 +8,15 @@
             <form method="post" action="{{ path('image_delete', {id: image.id}) }}" class="form-horizontal">
                 <div class="form-group">
                     <label class="hidden" for="image_description">description: </label>
-                    <input class="hidden" type="text" id="image_description" name="image[description]" value="{{ image.description }}" readonly>
-                    <h3 class="col-sm-6 col-sm-offset-4" style="word-wrap: break-word"><strong>Description: </strong> {{ image.description }}</h3>
+                    <input class="hidden" type="text" id="image_description" name="image[description]"
+                           value="{{ image.description }}" readonly>
+                    <h3 class="col-sm-6 col-sm-offset-4" style="word-wrap: break-word">
+                        <strong>Description: </strong> {{ image.description }}</h3>
                 </div>
-                 {{ form_row(form._token) }}
+                {{ form_row(form._token) }}
 
-                <img src="{{ asset("uploads/images/" ~ image.imageName) }}" class="img-responsive col-sm-3 col-sm-offset-5" style="margin-bottom: 20px">
+                <img src="{{ asset("uploads/images/" ~ image.imageName) }}"
+                     class="img-responsive col-sm-3 col-sm-offset-5" style="margin-bottom: 20px">
 
                 <div class="form-group">
                     <div class="col-sm-3 col-sm-offset-5">

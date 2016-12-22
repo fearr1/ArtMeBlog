@@ -8,12 +8,15 @@
             <form method="post" action="{{ path('song_delete', {id: song.id}) }}" class="form-horizontal">
                 <div class="form-group">
                     <label class="hidden" for="song_description">description: </label>
-                    <input class="hidden" type="text" id="song_description" name="song[description]" value="{{ song.description }}" readonly>
-                    <h3 class="col-sm-6 col-sm-offset-3" style="word-wrap: break-word"><strong>Description: </strong> {{ song.description }}</h3>
+                    <input class="hidden" type="text" id="song_description" name="song[description]"
+                           value="{{ song.description }}" readonly>
+                    <h3 class="col-sm-6 col-sm-offset-3" style="word-wrap: break-word">
+                        <strong>Description: </strong> {{ song.description }}</h3>
                 </div>
                 {{ form_row(form._token) }}
 
-                <audio controls class="col-sm-6 col-sm-offset-3 img-responsive" style="margin-bottom: 20px; margin-top: 40px">
+                <audio controls class="col-sm-6 col-sm-offset-3 img-responsive"
+                       style="margin-bottom: 20px; margin-top: 40px">
                     <source src="{{ asset('uploads/songs/' ~ song.songName) }}">
                 </audio>
 

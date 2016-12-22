@@ -13,11 +13,8 @@ class SongType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-
             ->add('songName', FileType::class, array('label' => 'Song (MP3, WAV or AIFF file)'))
-            ->add('description', TextType::class)
-
-        ;
+            ->add('description', TextType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)

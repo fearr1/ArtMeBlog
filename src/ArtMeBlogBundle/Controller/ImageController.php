@@ -36,8 +36,7 @@ class ImageController extends Controller
             //$file->guessExtension();
 
 
-
-            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+            $fileName = md5(uniqid()) . '.' . $file->guessExtension();
 
             $file->move(
                 $this->getParameter('images_directory'),
@@ -59,7 +58,6 @@ class ImageController extends Controller
         }
 
 
-
         return $this->render('image/add.html.twig', array(
             'form' => $form->createView(),
         ));
@@ -68,7 +66,8 @@ class ImageController extends Controller
     /**
      * @Route("/picture/all", name="pictures_show_all")
      */
-    public function showAll(){
+    public function showAll()
+    {
         $pictures = $this->getDoctrine()->getRepository(Image::class)->findAll();
         return $this->render('image/showAll.html.twig', array(
             'pictures' => $pictures
@@ -82,25 +81,25 @@ class ImageController extends Controller
      * @param Request $request
      * @return RedirectResponse
      */
-    public function deleteImage(Request $request, $id){
+    public function deleteImage(Request $request, $id)
+    {
         $image = $this->getDoctrine()->getRepository(Image::class)->find($id);
-        if($image === null) {
+        if ($image === null) {
             return $this->redirectToRoute('pictures_show_all');
         }
         $currentUser = $this->getUser();
-        if($currentUser != $image->getAuthor()){
+        if ($currentUser != $image->getAuthor()) {
             return $this->redirectToRoute('pictures_show_all');
         }
 
         $imageName = $image->getImageName();
         $path = $this->getParameter('images_directory');
-        $file = file($path."/".$imageName);
+        $file = file($path . "/" . $imageName);
         $form = $this->createForm(ImageDeleteType::class, $image);
 
 
-
         $form->handleRequest($request);
-        if($form->isSubmitted()) {
+        if ($form->isSubmitted()) {
             //deleting the file from uploads/images..
             unlink($path . '/' . $imageName);
             $em = $this->getDoctrine()->getEntityManager();
@@ -121,7 +120,8 @@ class ImageController extends Controller
      * @param $id
      * @return RedirectResponse
      */
-    public function showOne($id){
+    public function showOne($id)
+    {
         $imageName = $this->getDoctrine()->getRepository(Image::class)->find($id)->getImageName();
 
         return $this->render('image/showOne.html.twig', array(
